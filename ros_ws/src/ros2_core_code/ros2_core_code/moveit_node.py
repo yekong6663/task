@@ -27,5 +27,14 @@ class MoveNode_t(Node):
         self.group=self.moveit.get__planning_component("whole")
         self.target_pose=target_pose
         self.target_pose.orientation.w=1.0
-    
+    """
+    @brief 类方法:完成移动
+    """ 
+    def move_to_target(self):
+        self.group.set_goal(self.target_pose)
+        plan=self.group.plan()
+        if plan:
+            self.group.execute()
+            self.get_logger().info("已经成功到达")
+        else:self.get_logger().info("运动失败")
 
