@@ -37,4 +37,20 @@ class MoveNode_t(Node):
             self.group.execute()
             self.get_logger().info("已经成功到达")
         else:self.get_logger().info("运动失败")
+"""
+    @brief 主函数,实现调用
+    @detail 
+    """ 
+def main():
+    rclpy.init()
+    target_pose=Pose()
+    target_pose.position.x=2.0
+    target_pose.position.y=2.0
+    target_pose.orientation.w=1.0
+    my_node=MoveNode_t(target_pose)
+    rclpy.spin(my_node)
+    my_node.destroy_node()
+    rclpy.shutdown()
+
+
 
