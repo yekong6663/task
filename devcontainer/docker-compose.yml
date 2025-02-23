@@ -1,0 +1,12 @@
+version: '3'
+services:
+  ros2_moveit:
+    build: ../docker
+    image: ros2_moveit_image
+    environment:
+      - ROS_MASTER_URI=http://ros2_moveit:11311
+    volumes:
+      - ../:/root/ws
+    ports:
+      - "8080:8080"
+    command: ["ros2", "launch", "ros2_core_code", "my_launch.launch.py"]
